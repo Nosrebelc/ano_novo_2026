@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Ano Novo - Mensagem de Esperança</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #0a0f2b, #1a1f3a);
+            color: #fff;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .card-container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .card {
+            width: 100%;
+            background: rgba(10, 15, 40, 0.85);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #ffd166, #ff9e6d, #ff7eb3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .year {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #ffd166;
+            text-shadow: 0 0 20px rgba(255, 209, 102, 0.7);
+            margin: 15px 0;
+            letter-spacing: 5px;
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+            font-weight: 600;
+        }
+        
+        .emphasis {
+            color: #ffd166;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        
+        .fireworks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+        }
+        
+        .firework::before, .firework::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+        }
+        
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .clock-digit {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .clock-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6efaf2;
+            text-shadow: 0 0 10px rgba(110, 250, 242, 0.7);
+        }
+        
+        .clock-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown-text {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ffd166;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            animation: sparkle 1.5s infinite;
+            z-index: 5;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #aaa;
+            position: relative;
+            z-index: 10;
+            font-style: italic;
+        }
+        
+        .new-year-text {
+            font-size: 1.8rem;
+            color: #ff9e6d;
+            text-shadow: 0 0 15px rgba(255, 158, 109, 0.5);
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .year { font-size: 3.5rem; }
+            .message { font-size: 1.1rem; }
+            .clock-container { gap: 10px; }
+            .clock-digit { min-width: 70px; padding: 10px; }
+            .clock-number { font-size: 2rem; }
+            .card { padding: 20px; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="fireworks" id="fireworks"></div>
+            
+            <div class="header">
+                <h1 class="floating">FELIZ ANO NOVO</h1>
+                <div class="year">2025</div>
+            </div>
+            
+            <div class="countdown-text">Contagem regressiva para um novo começo</div>
+            
+            <div class="clock-container">
+                <div class="clock-digit">
+                    <div class="clock-number" id="days">00</div>
+                    <div class="clock-label">Dias</div>
+                </div>
+                <div class="clock-digit">
+                    <div class="clock-number" id="hours">00</div>
+                    <div class="clock-label">Horas</div>
+                </div>
+                <div class="clock-digit">
+                    <div class="clock-number" id="minutes">00</div>
+                    <div class="clock-label">Minutos</div>
+                </div>
+                <div class="clock-digit">
+                    <div class="clock-number" id="seconds">00</div>
+                    <div class="clock-label">Segundos</div>
+                </div>
+            </div>
+            
+            <div class="new-year-text">Um Novo Ciclo Começa!</div>
+            
+            <div class="message">
+                Que o novo ano traga consigo a <span class="emphasis">renovação</span> que sua alma precisa, a <span class="emphasis">esperança</span> que seu coração anseia e o <span class="emphasis">otimismo</span> que ilumina seu caminho.<br><br>
+                Que cada amanhecer seja uma página em branco para escrever novas histórias, cada desafio uma oportunidade de crescimento e cada conquista um motivo para celebrar.<br><br>
+                Que 2025 seja repleto de luz, amor e realizações extraordinárias!
+            </div>
+            
+            <div class="footer">
+              Esses são os votos de <span class="emphasis">Cleberson & Guta!</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Criar fogos de artifício
+        function createFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const colors = ['#ffd166', '#ff9e6d', '#ff7eb3', '#6efaf2', '#ffffff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                // Posição aleatória
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Cor aleatória
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Tamanho aleatório
+                const size = Math.random() * 6 + 3;
+                
+                firework.style.left = `${posX}%`;
+                firework.style.top = `${posY}%`;
+                firework.style.backgroundColor = color;
+                firework.style.width = `${size}px`;
+                firework.style.height = `${size}px`;
+                firework.style.boxShadow = `0 0 ${size*2}px ${color}`;
+                
+                // Animação de piscar
+                firework.style.animation = `sparkle ${Math.random() * 2 + 1}s infinite ${Math.random() * 2}s`;
+                
+                fireworksContainer.appendChild(firework);
+            }
+        }
+        
+        // Criar brilhos cintilantes
+        function createSparkles() {
+            const card = document.querySelector('.card');
+            
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Posição aleatória
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Tamanho aleatório
+                const size = Math.random() * 8 + 4;
+                
+                sparkle.style.left = `${posX}%`;
+                sparkle.style.top = `${posY}%`;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                // Atraso aleatório para animação
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                
+                card.appendChild(sparkle);
+            }
+        }
+        
+        // Atualizar contagem regressiva (para o próximo ano)
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const nextYear = currentYear + 1;
+            const newYearDate = new Date(`January 1, ${nextYear} 00:00:00`);
+            
+            // Se já passou do Ano Novo, mostrar contagem para o próximo
+            const timeDiff = newYearDate - now;
+            
+            // Calcular dias, horas, minutos e segundos
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            // Atualizar elementos
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Atualizar o ano exibido
+            document.querySelector('.year').textContent = nextYear;
+        }
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            createFireworks();
+            createSparkles();
+            updateCountdown();
+            
+            // Atualizar contagem regressiva a cada segundo
+            setInterval(updateCountdown, 1000);
+            
+            // Efeito de digitação para a mensagem
+            const message = "Que o novo ano traga consigo a renovação que sua alma precisa, a esperança que seu coração anseia e o otimismo que ilumina seu caminho.";
+            const messageElement = document.querySelector('.message');
+            const originalHTML = messageElement.innerHTML;
+            
+            // Resetar para vazio
+            messageElement.innerHTML = '';
+            
+            // Efeito de digitação
+            let i = 0;
+            function typeWriter() {
+                if (i < originalHTML.length) {
+                    messageElement.innerHTML += originalHTML.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 20);
+                } else {
+                    // Restaurar HTML original completo
+                    messageElement.innerHTML = originalHTML;
+                }
+            }
+            
+            // Iniciar efeito de digitação após um breve delay
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>
