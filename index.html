@@ -75,12 +75,35 @@
             line-height: 1.8;
             text-align: center;
             margin: 30px 0;
-            position: relative;
-            z-index: 10;
             padding: 0 20px;
             font-weight: 600;
+
+            /* Novo efeito */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealText 2.2s ease forwards;
         }
-        
+
+        .message span {
+            opacity: 0;
+            animation: revealSpan 0.8s ease forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes revealSpan {
+            to {
+                opacity: 1;
+            }
+        }
+
+
         .emphasis {
             color: #ffd166;
             font-weight: 700;
@@ -244,15 +267,26 @@
             
             <div class="new-year-text">Um Novo Ciclo Começa!</div>
             
-            <div class="message">
-                Que o novo ano traga consigo a <span class="emphasis">renovação</span> que sua alma precisa, a <span class="emphasis">esperança</span> que seu coração anseia e o <span class="emphasis">otimismo</span> que ilumina seu caminho.<br><br>
-                Que cada amanhecer seja uma página em branco para escrever novas histórias, cada desafio uma oportunidade de crescimento e cada conquista um motivo para celebrar.<br><br>
-                Que 2025 seja repleto de luz, amor e realizações extraordinárias!
-            </div>
+            <div class="message reveal">
+    Que o novo ano traga consigo a 
+    <span class="emphasis">renovação</span> 
+    que sua alma precisa, a 
+    <span class="emphasis">esperança</span> 
+    que seu coração anseia e o 
+    <span class="emphasis">otimismo</span> 
+    que ilumina seu caminho.<br><br>
+
+    Que cada amanhecer seja uma página em branco para escrever novas histórias, 
+    cada desafio uma oportunidade de crescimento e cada conquista um motivo 
+    para celebrar.<br><br>
+
+    Que 2025 seja repleto de luz, amor e realizações extraordinárias!
+</div>
+
             
             <div class="footer">
               Esses são os votos de <span class="emphasis">Cleberson & Guta!</span>
-            </div>
+          </div>
         </div>
     </div>
 
@@ -348,33 +382,7 @@
             createFireworks();
             createSparkles();
             updateCountdown();
-            
-            // Atualizar contagem regressiva a cada segundo
             setInterval(updateCountdown, 1000);
-            
-            // Efeito de digitação para a mensagem
-            const message = "Que o novo ano traga consigo a renovação que sua alma precisa, a esperança que seu coração anseia e o otimismo que ilumina seu caminho.";
-            const messageElement = document.querySelector('.message');
-            const originalHTML = messageElement.innerHTML;
-            
-            // Resetar para vazio
-            messageElement.innerHTML = '';
-            
-            // Efeito de digitação
-            let i = 0;
-            function typeWriter() {
-                if (i < originalHTML.length) {
-                    messageElement.innerHTML += originalHTML.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 20);
-                } else {
-                    // Restaurar HTML original completo
-                    messageElement.innerHTML = originalHTML;
-                }
-            }
-            
-            // Iniciar efeito de digitação após um breve delay
-            setTimeout(typeWriter, 1000);
         });
     </script>
 </body>
